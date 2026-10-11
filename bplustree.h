@@ -9,11 +9,11 @@
 #ifndef BPLUSTREE_H
 #define BPLUSTREE_H
 
-#define T 2   // Minimum degree (max keys in node = 2*T-1 = 3)
+#define BPLUS_T 2   // Minimum degree (max keys in node = 2*BPLUS_T-1 = 3)
 
 typedef struct BPlusNode {
-    int keys[2*T - 1];
-    struct BPlusNode *children[2*T];
+    int keys[2*BPLUS_T - 1];
+    struct BPlusNode *children[2*BPLUS_T];
     int n;                  // number of keys
     int leaf;               // 1 if leaf
     struct BPlusNode *next; // only used by leaf nodes (linked list)

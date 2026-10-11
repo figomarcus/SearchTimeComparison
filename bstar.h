@@ -9,11 +9,11 @@
 #ifndef BSTAR_H
 #define BSTAR_H
 
-#define T 3
+#define BSTAR_T 3
 
 typedef struct BStarNode {
-    int keys[2*T];
-    struct BStarNode *children[2*T + 1];
+    int keys[2*BSTAR_T];
+    struct BStarNode *children[2*BSTAR_T + 1];
     int n;
     int leaf;
 } BStarNode;

@@ -14,7 +14,7 @@ BPlusNode* bplus_createNode(int leaf) {
     node->n = 0;
     node->leaf = leaf;
     node->next = NULL;
-    for (int i = 0; i < 2*T; i++)
+    for (int i = 0; i < 2*BPLUS_T; i++)
         node->children[i] = NULL;
     return node;
 }
@@ -34,23 +34,23 @@ BPlusTree bplus_create() {
 void bplus_splitChild(BPlusNode *parent, int i) {
     BPlusNode *y = parent->children[i];
     BPlusNode *z = bplus_createNode(y->leaf);
-    z->n = T - 1;
+    z->n = BPLUS_T - 1;
 
     // Copy keys
-    for (int j = 0; j < T-1; j++)
-        z->keys[j] = y->keys[j + T];
+    for (int j = 0; j < BPLUS_T-1; j++)
+        z->keys[j] = y->keys[j + BPLUS_T];
 
     // If not leaf, copy children
     if (!y->leaf) {
-        for (int j = 0; j < T; j++)
-            z->children[j] = y->children[j + T];
+        for (int j = 0; j < BPLUS_T; j++)
+            z->children[j] = y->children[j + BPLUS_T];
     } else {
         // Important for B+ : link the leaves
         z->next = y->next;
         y->next = z;
     }
 
-    y->n = T - 1;
+    y->n = BPLUS_T - 1;
 
     // Shift parent's children
     for (int j = parent->n; j >= i+1; j--)
@@ -61,7 +61,7 @@ void bplus_splitChild(BPlusNode *parent, int i) {
     for (int j = parent->n-1; j >= i; j--)
         parent->keys[j+1] = parent->keys[j];
 
-    parent->keys[i] = y->keys[T-1];   // separator key goes up
+    parent->keys[i] = y->keys[BPLUS_T-1];   // separator key goes up
     parent->n++;
 }
 
@@ -83,7 +83,7 @@ void bplus_insertNonFull(BPlusNode *node, int value) {
             i--;
         i++;
 
-        if (node->children[i]->n == 2*T - 1) {
+        if (node->children[i]->n == 2*BPLUS_T - 1) {
             bplus_splitChild(node, i);
             if (value > node->keys[i])
                 i++;
@@ -105,7 +105,7 @@ void bplus_insertNonFull(BPlusNode *node, int value) {
 void bplus_insert(BPlusTree *root, int value) {
     BPlusNode *r = *root;
 
-    if (r->n == 2*T - 1) {
+    if (r->n == 2*BPLUS_T - 1) {
         BPlusNode *s = bplus_createNode(0);          // new root (internal)
         s->children[0] = r;
         bplus_splitChild(s, 0);

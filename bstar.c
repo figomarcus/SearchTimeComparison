@@ -13,7 +13,7 @@ BStarNode* bstar_createNode(int leaf) {
     BStarNode *node = (BStarNode*)malloc(sizeof(BStarNode));
     node->n = 0;
     node->leaf = leaf;
-    for (int i = 0; i <= 2*T; i++)
+    for (int i = 0; i <= 2*BSTAR_T; i++)
         node->children[i] = NULL;
     return node;
 }
@@ -73,7 +73,7 @@ void bstar_insertNonFull(BStarNode *node, int value) {
             i--;
         i++;
 
-        if (node->children[i]->n == 2*T) {
+        if (node->children[i]->n == 2*BSTAR_T) {
             bstar_splitChild(node, i);
             if (value > node->keys[i])
                 i++;
@@ -95,7 +95,7 @@ void bstar_insertNonFull(BStarNode *node, int value) {
 void bstar_insert(BStarTree *root, int value) {
     BStarNode *r = *root;
 
-    if (r->n == 2*T) {
+    if (r->n == 2*BSTAR_T) {
         BStarNode *s = bstar_createNode(0);
         s->children[0] = r;
         bstar_splitChild(s, 0);

@@ -9,7 +9,7 @@
 #include "trie.h"
 #include "mway.h"
 #include "btree.h"
-#include "bplus.h"
+#include "bplustree.h"
 #include "bstar.h"
 
 #define MAX_SIZE 125000
