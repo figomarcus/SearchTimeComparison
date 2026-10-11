@@ -1,14 +1,9 @@
-/*
-    File: avlapp.c
-    Menu driven program for AVL Tree
-*/
-
 #include <stdio.h>
 #include <stdlib.h>
 #include "avl.h"
 
 int main() {
-    AVL tree = create();
+    AVL tree = avl_create();
     int choice, value;
 
     while (1) {
@@ -26,7 +21,7 @@ int main() {
             case 1:
                 printf("Enter integer value to insert: ");
                 scanf("%d", &value);
-                insert(&tree, value);
+                avl_insert(&tree, value);
                 printf("%d inserted (tree is balanced).\n", value);
                 break;
 
@@ -36,8 +31,8 @@ int main() {
                 else {
                     printf("Enter value to delete: ");
                     scanf("%d", &value);
-                    delete(&tree, value);
-                    printf("Delete completed (tree remains balanced).\n");
+                    avl_delete(&tree, value);
+                    printf("Delete completed.\n");
                 }
                 break;
 
@@ -46,22 +41,22 @@ int main() {
                     printf("Tree is empty.\n");
                 else {
                     printf("Inorder Traversal: ");
-                    print(tree);
+                    avl_print(tree);
                     printf("\n");
                 }
                 break;
 
             case 4:
-                destroy(&tree);
+                avl_destroy(&tree);
                 printf("Tree destroyed.\n");
                 break;
 
             case 5:
-                runTests();
+                avl_runTests();
                 break;
 
             case 6:
-                destroy(&tree);
+                avl_destroy(&tree);
                 printf("Exiting...\n");
                 exit(0);
 

@@ -1,14 +1,9 @@
-/*
-    File: mwayapp.c
-    Menu-driven program for m-Way Tree
-*/
-
 #include <stdio.h>
 #include <stdlib.h>
 #include "mway.h"
 
 int main() {
-    MWayTree tree = create();
+    MWayTree tree = mway_create();
     int choice, value;
 
     while (1) {
@@ -26,34 +21,34 @@ int main() {
             case 1:
                 printf("Enter value to insert: ");
                 scanf("%d", &value);
-                insert(&tree, value);
+                mway_insert(&tree, value);
                 printf("%d inserted.\n", value);
                 break;
 
             case 2:
                 printf("Enter value to delete: ");
                 scanf("%d", &value);
-                delete(&tree, value);
+                mway_delete(&tree, value);
                 break;
 
             case 3:
                 printf("Keys in sorted order: ");
-                print(tree);
+                mway_print(tree);
                 printf("\n");
                 break;
 
             case 4:
-                destroy(&tree);
-                tree = create();
+                mway_destroy(&tree);
+                tree = mway_create();
                 printf("Tree destroyed.\n");
                 break;
 
             case 5:
-                runTests();
+                mway_runTests();
                 break;
 
             case 6:
-                destroy(&tree);
+                mway_destroy(&tree);
                 printf("Exiting...\n");
                 exit(0);
 

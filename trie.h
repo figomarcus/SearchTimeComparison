@@ -5,17 +5,6 @@
     File        : trie.h
 */
 
-#ifndef TRIE_H
-#define TRIE_H
-
-#define ALPHABET 26
-
-typedef struct TrieNode {
-    struct TrieNode *children[ALPHABET];
-    int isEnd;          // 1 if this node marks end of a word/key
-} TrieNode;
-
-typedef TrieNode* Trie;
 
 // ADT style
 /*
@@ -24,6 +13,18 @@ typedef TrieNode* Trie;
 (iii) Search  → search for a key (returns 1 if found)
 (iv) Destroy  → free entire Trie
 */
+
+#ifndef TRIE_H
+#define TRIE_H
+
+#define ALPHABET 26
+
+typedef struct TrieNode {
+    struct TrieNode *children[ALPHABET];
+    int isEnd;
+} TrieNode;
+
+typedef TrieNode* Trie;
 
 Trie createTrie();
 void insertTrie(Trie root, const char *key);

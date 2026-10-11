@@ -10,15 +10,23 @@
 #ifndef AVL_H
 #define AVL_H
 
-typedef struct Node {
+typedef struct AVLNode {
     int data;
-    int height;                 // height of the node
-    struct Node *left;
-    struct Node *right;
-} Node;
+    int height;
+    struct AVLNode *left;
+    struct AVLNode *right;
+} AVLNode;
 
-typedef Node* AVL;
+typedef AVLNode* AVL;
 
+AVL  avl_create();
+void avl_insert(AVL *t, int value);
+void avl_delete(AVL *t, int value);
+void avl_destroy(AVL *t);
+void avl_print(AVL t);
+int  avl_search(AVL t, int value);
+
+#endif
 /* =====================================================
    ADT OPERATIONS FOR AVL TREE
    ===================================================== */
@@ -135,13 +143,3 @@ typedef Node* AVL;
       All elements are displayed in sorted order.
       The structure of the tree remains unchanged.
 ----------------------------------------------------- */
-
-// Function Prototypes
-AVL create();
-void insert(AVL *t, int value);
-void delete(AVL *t, int value);
-void destroy(AVL *t);
-void print(AVL t);
-void runTests();
-
-#endif

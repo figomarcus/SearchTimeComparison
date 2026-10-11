@@ -4,7 +4,7 @@
 #include <ctype.h>
 #include "trie.h"
 
-TrieNode* createNode() {
+TrieNode* createTrieNode() {
     TrieNode *node = (TrieNode*)malloc(sizeof(TrieNode));
     node->isEnd = 0;
     for (int i = 0; i < ALPHABET; i++)
@@ -13,17 +13,17 @@ TrieNode* createNode() {
 }
 
 Trie createTrie() {
-    return createNode();
+    return createTrieNode();
 }
 
 void insertTrie(Trie root, const char *key) {
     TrieNode *curr = root;
     for (int i = 0; key[i] != '\0'; i++) {
         char ch = tolower(key[i]);
-        if (ch < 'a' || ch > 'z') continue;   // skip non-letters
+        if (ch < 'a' || ch > 'z') continue;
         int idx = ch - 'a';
         if (curr->children[idx] == NULL)
-            curr->children[idx] = createNode();
+            curr->children[idx] = createTrieNode();
         curr = curr->children[idx];
     }
     curr->isEnd = 1;
