@@ -19,11 +19,18 @@ int avl_getBalance(AVLNode *n) {
 }
 
 AVLNode* avl_newNode(int value) {
-    AVLNode *node = (AVLNode*)malloc(sizeof(AVLNode));
+    AVLNode *node = malloc(sizeof(AVLNode));
+
+    if (node == NULL) {
+        fprintf(stderr, "Memory allocation failed\n");
+        exit(EXIT_FAILURE);
+    }
+
     node->data = value;
     node->left = NULL;
     node->right = NULL;
     node->height = 1;
+
     return node;
 }
 
@@ -60,42 +67,49 @@ AVL avl_create() {
     return NULL;
 }
 
-/* ===== INSERT ===== */
+
 void avl_insert(AVL *t, int value) {
     if (*t == NULL) {
         *t = avl_newNode(value);
+
+        if (*t == NULL) {
+            fprintf(stderr, "Memory allocation failed\n");
+            exit(EXIT_FAILURE);
+        }
         return;
     }
 
     if (value < (*t)->data)
         avl_insert(&((*t)->left), value);
     else
-        avl_insert(&((*t)->right), value);   // equal goes RIGHT
+        avl_insert(&((*t)->right), value);
 
-    (*t)->height = 1 + avl_max(avl_height((*t)->left), avl_height((*t)->right));
+    (*t)->height =
+        1 + avl_max(avl_height((*t)->left),
+                    avl_height((*t)->right));
 
     int balance = avl_getBalance(*t);
 
-    // LL
-    if (balance > 1 && value < (*t)->left->data)
+    // Left-Left
+    if (balance > 1 && value < (*t)->left->data) {
         *t = avl_rightRotate(*t);
-
-    // RR
-    else if (balance < -1 && value > (*t)->right->data)
+    }
+    // Right-Right, including duplicate values
+    else if (balance < -1 && value >= (*t)->right->data) {
         *t = avl_leftRotate(*t);
-
-    // LR
-    else if (balance > 1 && value > (*t)->left->data) {
+    }
+    // Left-Right
+    else if (balance > 1 && value >= (*t)->left->data) {
         (*t)->left = avl_leftRotate((*t)->left);
         *t = avl_rightRotate(*t);
     }
-
-    // RL
+    // Right-Left
     else if (balance < -1 && value < (*t)->right->data) {
         (*t)->right = avl_rightRotate((*t)->right);
         *t = avl_leftRotate(*t);
     }
 }
+
 
 /* ===== Helper for Delete ===== */
 AVLNode* avl_findMin(AVLNode *t) {

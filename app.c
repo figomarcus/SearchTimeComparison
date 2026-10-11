@@ -3,7 +3,6 @@
 #include <string.h>
 #include <time.h>
 
-// Headers
 #include "avl.h"
 #include "bst.h"
 #include "trie.h"
@@ -20,7 +19,7 @@ int n;
 void loadData(const char *filename) {
     FILE *fp = fopen(filename, "r");
     if (!fp) {
-        printf("Error: Cannot open %s\n", filename);
+        printf("Cannot open %s\n", filename);
         exit(1);
     }
     n = 0;
@@ -45,7 +44,7 @@ int main() {
 
     printf("=====================================================\n");
     printf("     SEARCH TIME COMPARISON OF DIFFERENT TREES\n");
-    printf("=====================================================\n\n");
+    printf("=====================================================\n");
 
     for (int s = 0; s < 4; s++) {
         sprintf(filename, "data_%d.txt", sizes[s]);
@@ -53,7 +52,8 @@ int main() {
 
         printf("\n========== Testing with %d keys ==========\n\n", sizes[s]);
 
-        // -------------------- AVL --------------------
+
+        // -------- AVL --------
         {
             AVL tree = avl_create();
             double start, insertTime, searchTime;
@@ -65,33 +65,34 @@ int main() {
 
             start = getTime();
             for (int i = 0; i < n; i++)
-                avl_search(tree, data[i]);   // you need to add this function
+                avl_search(tree, data[i]);
             searchTime = getTime() - start;
 
-            printf("AVL Tree     → Insert: %.4f sec   Search: %.4f sec\n", insertTime, searchTime);
+            printf("AVL Tree     -> Insert: %.4f sec   Search: %.4f sec\n",
+                   insertTime, searchTime);
+
             avl_destroy(&tree);
         }
 
-        // -------------------- BST --------------------
+
+        // -------- BST --------
         {
             BST tree = bst_create();
             double start, insertTime, searchTime;
 
             start = getTime();
-            for (int i = 0; i < n; i++)
-                bst_insert(&tree, data[i]);
+            for (int i = 0; i < n; i++) bst_insert(&tree, data[i]);
             insertTime = getTime() - start;
 
             start = getTime();
-            for (int i = 0; i < n; i++)
-                bst_search(tree, data[i]);
+            for (int i = 0; i < n; i++) bst_search(tree, data[i]);
             searchTime = getTime() - start;
 
             printf("BST          → Insert: %.4f sec   Search: %.4f sec\n", insertTime, searchTime);
             bst_destroy(&tree);
         }
 
-        // -------------------- Trie --------------------
+        // -------- Trie --------
         {
             Trie t = createTrie();
             double start, insertTime, searchTime;
@@ -114,76 +115,68 @@ int main() {
             destroyTrie(t);
         }
 
-        // -------------------- m-Way --------------------
+        // -------- m-Way --------
         {
             MWayTree tree = mway_create();
             double start, insertTime, searchTime;
 
             start = getTime();
-            for (int i = 0; i < n; i++)
-                mway_insert(&tree, data[i]);
+            for (int i = 0; i < n; i++) mway_insert(&tree, data[i]);
             insertTime = getTime() - start;
 
             start = getTime();
-            for (int i = 0; i < n; i++)
-                mway_search(tree, data[i]);  // add this function
+            for (int i = 0; i < n; i++) mway_search(tree, data[i]);
             searchTime = getTime() - start;
 
             printf("m-Way Tree   → Insert: %.4f sec   Search: %.4f sec\n", insertTime, searchTime);
             mway_destroy(&tree);
         }
 
-        // -------------------- B-Tree --------------------
+        // -------- B-Tree --------
         {
             BTree tree = btree_create();
             double start, insertTime, searchTime;
 
             start = getTime();
-            for (int i = 0; i < n; i++)
-                btree_insert(&tree, data[i]);
+            for (int i = 0; i < n; i++) btree_insert(&tree, data[i]);
             insertTime = getTime() - start;
 
             start = getTime();
-            for (int i = 0; i < n; i++)
-                btree_search(tree, data[i]);
+            for (int i = 0; i < n; i++) btree_search(tree, data[i]);
             searchTime = getTime() - start;
 
             printf("B-Tree       → Insert: %.4f sec   Search: %.4f sec\n", insertTime, searchTime);
             btree_destroy(&tree);
         }
 
-        // -------------------- B+ Tree --------------------
+        // -------- B+ Tree --------
         {
             BPlusTree tree = bplus_create();
             double start, insertTime, searchTime;
 
             start = getTime();
-            for (int i = 0; i < n; i++)
-                bplus_insert(&tree, data[i]);
+            for (int i = 0; i < n; i++) bplus_insert(&tree, data[i]);
             insertTime = getTime() - start;
 
             start = getTime();
-            for (int i = 0; i < n; i++)
-                bplus_search(tree, data[i]);
+            for (int i = 0; i < n; i++) bplus_search(tree, data[i]);
             searchTime = getTime() - start;
 
             printf("B+ Tree      → Insert: %.4f sec   Search: %.4f sec\n", insertTime, searchTime);
             bplus_destroy(&tree);
         }
 
-        // -------------------- B* Tree --------------------
+        // -------- B* Tree --------
         {
             BStarTree tree = bstar_create();
             double start, insertTime, searchTime;
 
             start = getTime();
-            for (int i = 0; i < n; i++)
-                bstar_insert(&tree, data[i]);
+            for (int i = 0; i < n; i++) bstar_insert(&tree, data[i]);
             insertTime = getTime() - start;
 
             start = getTime();
-            for (int i = 0; i < n; i++)
-                bstar_search(tree, data[i]);
+            for (int i = 0; i < n; i++) bstar_search(tree, data[i]);
             searchTime = getTime() - start;
 
             printf("B* Tree      → Insert: %.4f sec   Search: %.4f sec\n", insertTime, searchTime);
