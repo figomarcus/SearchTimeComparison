@@ -8,4 +8,4 @@ Mini Project - Search Time Comparison of Trees
 
 #Compile everything together
 
-gcc app.c bst.c avl.c trie.c mway.c btree.c bplus.c bstar.c -o comparison.exe
+gcc app.c bst.c avl.c trie.c mway.c btree.c bplustree.c bstar.c -o comparison.exe
