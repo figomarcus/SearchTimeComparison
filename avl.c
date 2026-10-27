@@ -219,3 +219,94 @@ void avl_runTests() {
     printf("Tree destroyed successfully!\n");
     printf("========== TESTS COMPLETED ==========\n");
 }
+
+/*
+=====================================================
+PSEUDOCODE FOR AVL TREE
+=====================================================
+
+Algorithm avl_create()
+    Return NULL
+
+-----------------------------------------------------
+
+Algorithm avl_insert(t, value)
+    If t is NULL then
+        Create new node with value
+        Set height of node = 1
+        Return
+    End If
+
+    If value < data of t then
+        avl_insert(left of t, value)
+    Else
+        avl_insert(right of t, value)   // equal goes right
+    End If
+
+    Update height of t
+    balance = height(left) - height(right)
+
+    If balance > 1 and value < left child data then
+        Right Rotate (LL case)
+    Else If balance < -1 and value > right child data then
+        Left Rotate (RR case)
+    Else If balance > 1 and value > left child data then
+        Left-Right Rotate (LR case)
+    Else If balance < -1 and value < right child data then
+        Right-Left Rotate (RL case)
+    End If
+
+-----------------------------------------------------
+
+Algorithm avl_delete(t, value)
+    If t is NULL then Return
+
+    If value < data of t then
+        avl_delete(left of t, value)
+    Else If value > data of t then
+        avl_delete(right of t, value)
+    Else
+        // Node found
+        If t has 0 or 1 child then
+            Replace t with its child (or NULL)
+        Else
+            Find minimum in right subtree
+            Copy minimum value into t
+            Delete the minimum node from right subtree
+        End If
+    End If
+
+    Update height of t
+    Perform rotations if unbalanced (same 4 cases)
+
+-----------------------------------------------------
+
+Algorithm avl_search(t, value)
+    If t is NULL then Return 0
+    If value == data of t then Return 1
+    If value < data of t then
+        Return avl_search(left of t, value)
+    Else
+        Return avl_search(right of t, value)
+    End If
+
+-----------------------------------------------------
+
+Algorithm avl_destroy(t)
+    If t is not NULL then
+        avl_destroy(left of t)
+        avl_destroy(right of t)
+        Free t
+        Set t = NULL
+    End If
+
+-----------------------------------------------------
+
+Algorithm avl_print(t)
+    If t is not NULL then
+        avl_print(left of t)
+        Display data of t
+        avl_print(right of t)
+    End If
+=====================================================
+*/

@@ -48,3 +48,67 @@ void destroyTrie(Trie root) {
         destroyTrie(root->children[i]);
     free(root);
 }
+/*
+=====================================================
+PSEUDOCODE FOR TRIE
+=====================================================
+
+Algorithm createTrie()
+    Create a new TrieNode
+    Set isEnd = 0
+    Set all children = NULL
+    Return the node as root
+
+-----------------------------------------------------
+
+Algorithm insertTrie(root, key)
+    curr = root
+
+    For each character ch in key
+        Convert ch to lowercase
+        idx = ch - 'a'
+
+        If children[idx] is NULL then
+            Create a new TrieNode
+            Set children[idx] = new node
+        End If
+
+        curr = children[idx]
+    End For
+
+    Set isEnd of curr = 1
+
+-----------------------------------------------------
+
+Algorithm searchTrie(root, key)
+    curr = root
+
+    For each character ch in key
+        Convert ch to lowercase
+        idx = ch - 'a'
+
+        If children[idx] is NULL then
+            Return 0          // not found
+        End If
+
+        curr = children[idx]
+    End For
+
+    If isEnd of curr is 1 then
+        Return 1              // found
+    Else
+        Return 0
+    End If
+
+-----------------------------------------------------
+
+Algorithm destroyTrie(root)
+    If root is NULL then Return
+
+    For i = 0 to 25
+        destroyTrie(children[i])
+    End For
+
+    Free root
+=====================================================
+*/

@@ -130,3 +130,83 @@ void mway_runTests() {
     printf("Tree destroyed successfully.\n");
     printf("========== TESTS COMPLETED ==========\n");
 }
+/*
+=====================================================
+PSEUDOCODE FOR m-WAY TREE
+=====================================================
+
+Algorithm mway_create()
+    Create a new empty leaf node
+    Return the node as root
+
+-----------------------------------------------------
+
+Algorithm mway_insert(root, value)
+    If root is NULL then
+        Create new leaf node
+        Put value in it
+        Return
+    End If
+
+    Find the correct child index i
+    (go right when value >= key)
+
+    If current node is leaf then
+        If space is available then
+            Insert value in sorted order
+        Else
+            Create a new leaf child
+            Insert value into the new child
+        End If
+    Else
+        Recursively call mway_insert on children[i]
+    End If
+
+-----------------------------------------------------
+
+Algorithm mway_search(root, value)
+    If root is NULL then Return 0
+
+    Find the correct position i
+    If key at position i equals value then Return 1
+
+    If root is leaf then Return 0
+
+    Return mway_search(children[i], value)
+
+-----------------------------------------------------
+
+Algorithm mway_delete(root, value)
+    If root is NULL then Return
+
+    Find the correct position i
+
+    If key is found and node is leaf then
+        Remove the key by shifting remaining keys
+    Else If node is not leaf then
+        Recursively call mway_delete on children[i]
+    Else
+        Value not found
+    End If
+
+-----------------------------------------------------
+
+Algorithm mway_destroy(root)
+    If root is not NULL then
+        For every child
+            mway_destroy(child)
+        Free root
+        Set root = NULL
+    End If
+
+-----------------------------------------------------
+
+Algorithm mway_print(root)
+    If root is not NULL then
+        For i = 0 to n-1
+            mway_print(children[i])
+            Display keys[i]
+        mway_print(children[n])
+    End If
+=====================================================
+*/
