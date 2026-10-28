@@ -112,6 +112,19 @@ void bstar_insert(BStarTree *root, int value) {
 
 /* ============================================================
    3. PRINT
+
+   Algorithm bstar_print(root)
+    If root is not NULL then
+        For i = 0 to n-1
+            If root is not leaf then
+                bstar_print(children[i])
+            End If
+            Display keys[i]
+        End For
+        If root is not leaf then
+            bstar_print(children[n])
+        End If
+    End If
    ============================================================ */
 void bstar_print(BStarTree root) {
     if (root == NULL) return;
@@ -128,6 +141,17 @@ void bstar_print(BStarTree root) {
 
 /* ============================================================
    4. DESTROY
+
+   Algorithm bstar_destroy(root)
+    If root is not NULL then
+        If root is not leaf then
+            For every child
+                bstar_destroy(child)
+            End For
+        End If
+        Free root
+        Set root = NULL
+    End If
    ============================================================ */
 void bstar_destroy(BStarTree *root) {
     if (*root == NULL) return;
