@@ -1,7 +1,7 @@
 /*
-    Name        : [Your Full Name]
-    Class       : [Your Class]
-    Roll Number : [Your Roll Number]
+    Name        : [Kiran Gavtalkar]
+    Class       : [MSc AI]
+    Roll Number : [2605]
 
     File        : btree.h
     Description : Abstract Data Type (ADT) Specification for B-Tree

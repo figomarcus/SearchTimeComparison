@@ -1,7 +1,7 @@
 /*
-    Name        : [Your Full Name]
-    Class       : [Your Class]
-    Roll Number : [Your Roll Number]
+    Name        : [Nidhi Nagvenkar]
+    Class       : [MSc AI]
+    Roll Number : [2605]
 
     File        : bst.h
     Description : Abstract Data Type (ADT) Specification for Binary Search Tree

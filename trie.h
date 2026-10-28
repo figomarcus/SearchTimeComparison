@@ -6,14 +6,6 @@
 */
 
 
-// ADT style
-/*
-(i)  Create   → create empty Trie
-(ii) Insert   → insert a string key
-(iii) Search  → search for a key (returns 1 if found)
-(iv) Destroy  → free entire Trie
-*/
-
 #ifndef TRIE_H
 #define TRIE_H
 

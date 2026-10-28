@@ -1,3 +1,13 @@
+/*
+    Name        : [Figo Marcus Fernandes]
+    Class       : [MSc AI Part 1]
+    Roll Number : [2604]
+
+    File        : mway.h
+    Description : Abstract Data Type (ADT) Specification for Mway Tree
+*/
+
+
 #ifndef MWAY_H
 #define MWAY_H
 

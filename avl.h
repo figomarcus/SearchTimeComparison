@@ -1,7 +1,7 @@
 /*
-    Name        : [Your Full Name]
-    Class       : [Your Class]
-    Roll Number : [Your Roll Number]
+    Name        : [Figo Marcus Fernandes]
+    Class       : [MSc AI Part 1]
+    Roll Number : [2604]
 
     File        : avl.h
     Description : Abstract Data Type (ADT) Specification for AVL Tree
