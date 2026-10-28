@@ -1,8 +1,10 @@
 /*
-    File: btree.c
-    Easy B-Tree Implementation (Minimum degree t = 2)
-    Rule: Equal values go to the RIGHT side
+   File Name: bst.c
+   Author: Kiran Gavtalkar
+   Roll No: 2605
+   Date: 30/09/2026
 */
+
 
 #include <stdio.h>
 #include <stdlib.h>

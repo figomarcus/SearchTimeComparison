@@ -1,11 +1,10 @@
 /*
-    Name        : [Nidhi Nagvenkar]
-    Class       : [MSc AI]
-    Roll Number : [2605]
-
-    File        : bst.h
-    Description : Abstract Data Type (ADT) Specification for Binary Search Tree
+   File Name: bst.c
+   Author: Kiran Gavtalkar
+   Roll No: 2605
+   Date: 30/09/2026
 */
+
 
 #ifndef BST_H
 #define BST_H

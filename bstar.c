@@ -1,7 +1,11 @@
 /*
-    File: bstar.c
-    Educational Implementation of B* Tree
-    Main idea: Higher occupancy + delayed split
+    Name        : [Nidhi Nagvenkar]
+    Class       : [MSc AI]
+    Roll Number : [2606]
+    File        : bstar.h
+    Description : Abstract Data Type (ADT) for B* Tree
+    Date Created: 30/09/26
+    Date Modified: 30/09/26
 */
 
 #include <stdio.h>
@@ -18,13 +22,17 @@ BStarNode* bstar_createNode(int leaf) {
     return node;
 }
 
-/* ============================================================
-   1. CREATE
-   Pseudocode:
-       Algorithm Create()
-           Create an empty leaf node
-           Return it as root
-   ============================================================ */
+/*
+1. Create(bstar)
+
+Function:
+    Creates an empty B* Tree.
+
+Pseudocode:
+    1. Check whether tree exists.
+    2. Set root to NULL.
+    3. Return.
+*/
 BStarTree bstar_create() {
     return bstar_createNode(1);
 }
@@ -82,16 +90,22 @@ void bstar_insertNonFull(BStarNode *node, int value) {
     }
 }
 
-/* ============================================================
-   2. INSERT
-   Pseudocode:
-       Algorithm Insert(root, value)
-           If root is full
-               Create new root
-               Split the old root
-           Insert the value
-           (In full B* Tree we first try redistribution with sibling)
-   ============================================================ */
+/*
+3. InsertElement(bstar, new.element)
+
+Function:
+    Inserts a new integer element into the B* Tree.
+
+Pseudocode:
+    1. Check tree and element.
+    2. If tree is empty:
+         Create root.
+         Insert element.
+    3. Otherwise recursively insert element.
+    4. If root splits:
+         Create new root.
+    5. Return flag.
+*/
 void bstar_insert(BStarTree *root, int value) {
     BStarNode *r = *root;
 
@@ -139,20 +153,18 @@ void bstar_print(BStarTree root) {
         bstar_print(root->children[i]);
 }
 
-/* ============================================================
-   4. DESTROY
+/*
+2. Destroy(bstar)
 
-   Algorithm bstar_destroy(root)
-    If root is not NULL then
-        If root is not leaf then
-            For every child
-                bstar_destroy(child)
-            End For
-        End If
-        Free root
-        Set root = NULL
-    End If
-   ============================================================ */
+Function:
+    Deletes the complete B* Tree and releases all allocated memory.
+
+Pseudocode:
+    1. If tree is NULL, return.
+    2. Recursively visit all child nodes.
+    3. Free every node.
+    4. Set root to NULL.
+*/
 void bstar_destroy(BStarTree *root) {
     if (*root == NULL) return;
 
@@ -164,9 +176,19 @@ void bstar_destroy(BStarTree *root) {
     *root = NULL;
 }
 
-/* ============================================================
-   5. SEARCH
-   ============================================================ */
+/*
+6. Search(bstar, search.element)
+
+Function:
+    Searches for a specified element in the B* Tree.
+
+Pseudocode:
+    1. Check whether tree exists.
+    2. Start searching from root.
+    3. Compare keys.
+    4. Move to appropriate child.
+    5. Return flag.
+*/
 int bstar_search(BStarTree root, int value) {
     if (root == NULL) return 0;
 

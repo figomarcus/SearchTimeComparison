@@ -1,8 +1,13 @@
 /*
-    File: bplustree.c
-    Easy B+ Tree (t = 2)
-    All data stored only in leaves + leaves are linked
+    Name        : [Nidhi Nagvenkar]
+    Class       : [MSc AI]
+    Roll Number : [2606]
+    File        : bplustree.h
+    Description : Abstract Data Type (ADT) for B+ Tree
+    Date Created: 30/09/26
+    Date Modified: 30/09/26
 */
+
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,13 +24,17 @@ BPlusNode* bplus_createNode(int leaf) {
     return node;
 }
 
-/* ============================================================
-   1. CREATE
-   Pseudocode:
-       Algorithm Create()
-           Create an empty leaf node
-           Return it as root
-   ============================================================ */
+/*
+1. Create(bplus)
+
+Function:
+    Creates an empty B+ Tree.
+
+Pseudocode:
+    1. Check whether tree exists.
+    2. Set root to NULL.
+    3. Return.
+*/
 BPlusTree bplus_create() {
     return bplus_createNode(1);
 }
@@ -92,16 +101,22 @@ void bplus_insertNonFull(BPlusNode *node, int value) {
     }
 }
 
-/* ============================================================
-   2. INSERT
-   Pseudocode:
-       Algorithm Insert(root, value)
-           If root is full
-               Create new root
-               Make old root its child
-               Split the old root
-           Insert the value into a leaf
-   ============================================================ */
+/*
+3. InsertElement(bplus, new.element)
+
+Function:
+    Inserts a new integer element into the B+ Tree.
+
+Pseudocode:
+    1. Check tree and element.
+    2. If tree is empty:
+         Create a leaf root.
+         Insert element.
+    3. Otherwise recursively insert element.
+    4. If root splits:
+         Create a new root.
+    5. Return flag.
+*/
 void bplus_insert(BPlusTree *root, int value) {
     BPlusNode *r = *root;
 
@@ -145,9 +160,18 @@ void bplus_print(BPlusTree root) {
     printf("\n");
 }
 
-/* ============================================================
-   4. DESTROY
-   ============================================================ */
+/*
+2. Destroy(bplus)
+
+Function:
+    Deletes the complete B+ Tree and releases all allocated memory.
+
+Pseudocode:
+    1. If tree is NULL, return.
+    2. Recursively visit all child nodes.
+    3. Free every node.
+    4. Set root to NULL.
+*/
 void bplus_destroy(BPlusTree *root) {
     if (*root == NULL) return;
 
@@ -161,6 +185,17 @@ void bplus_destroy(BPlusTree *root) {
 
 /* ============================================================
    5. DELETE (basic version – removes from leaf only)
+
+
+1. If root is empty, return
+2. Go down from root until you reach the correct leaf
+3. Search for the value in that leaf
+4. If value is found:
+      - Remove it by shifting other keys left
+      - Decrease key count
+5. Else:
+      - Value not found
+
    ============================================================ */
 void bplus_delete(BPlusTree *root, int value) {
     if (*root == NULL) return;
@@ -189,9 +224,19 @@ void bplus_delete(BPlusTree *root, int value) {
     }
 }
 
-/* ============================================================
-   6. SEARCH
-   ============================================================ */
+/*
+6. Search(bplus, search.element)
+
+Function:
+    Searches for a specified element in the B+ Tree.
+
+Pseudocode:
+    1. Start from root.
+    2. Follow separator keys.
+    3. Reach appropriate leaf.
+    4. Search keys in leaf.
+    5. Return flag.
+*/
 int bplus_search(BPlusTree root, int value) {
     if (root == NULL) return 0;
 
